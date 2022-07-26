@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Practica | ID</title>
+    <title>ID | Usuarios</title>
+    <link rel="shortcut icon" href="http://www.iguanadigital.com.ec/images/Logo/nuevo-logo-iguana-digital-06-06.png" type="image/x-icon">
     <!-- Links -->
     <!-- Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
@@ -14,14 +15,51 @@
 
 </head>
 <body>
+    
+    <!-- start modals -->
+    <div class="modal" tabindex="-1" id="modal-delete">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Modal title</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+              <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+              <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- end modals -->
+
+    <!-- start header -->
+    <header class="fixed-top  header-transparent ">
+        <nav class="navbar">
+            <div class="container-fluid">
+              <a class="navbar-brand"></a>
+              <form class="d-flex" role="search">
+                <input class="form-control me-2" type="search" placeholder="Buscar" aria-label="Search">
+                <button class="btn btn-outline-primary" type="submit">Buscar</button>
+              </form>
+              
+            </div>
+          </nav>
+    </header>
+    <!-- end header -->
 
     <!-- start sidebar -->
-    <div class="container-fluid">
+    <div class="container-fluid m-icon">
         <div class="row flex-nowrap">
             <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0 bg-dark">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
                     <a href="/" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <span class="fs-5 d-none d-sm-inline">LOGO</span>
+                        <span class="fs-5 d-none d-sm-inline">
+                            <img src="http://www.iguanadigital.com.ec/images/Logo/iguana-digital-logo_mesa-de-trabajo-1-copia.png" alt="" width="170">
+                        </span>
                     </a>
                     <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                         <li class="nav-item">
@@ -80,40 +118,173 @@
                 </div>
             </div>
             <div class="col py-3">
-            <!-- start contenido -->
+                <!-- start contenido -->
 
-                <!-- start header -->
-                <header class="fixed-top  header-transparent ">
+                <div class="container header-contenido">
                     <nav class="navbar">
                         <div class="container-fluid">
-                          <a class="navbar-brand"></a>
-                          <form class="d-flex" role="search">
-                            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                            <button class="btn btn-outline-primary" type="submit">Search</button>
-                          </form>
-                          
+
+                            <!-- start create-user-form -->
+                            <a class="navbar-brand"><h1>Usuarios</h1></a>
+                            <a href="" class="btn btn-dark" type="button" data-bs-toggle="modal" data-bs-target="#form-create">
+                                Crear Usuario
+                                <i class="bi bi-plus"></i>
+                            </a>
+                            
+                            <!-- Modal -->
+                            <div class="modal fade" id="form-create" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Crear Usuario</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <!-- start form-create -->
+                                        <form method="post">
+                                            <label for="">Nombre Completo</label>
+                                            <input type="text" name="name" id="name" class="form-control">
+
+                                            <label for="">Contraseña</label>
+                                            <input type="password" name="password" id="password" class="form-control">
+
+                                            <label for="">Correo Electronico</label>
+                                            <input type="email" name="email" id="email" class="form-control">
+                    
+                                            <br>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                                <button type="reset" class="btn btn-primary" onclick="sendDataFormCreate()" data-bs-dismiss="modal">Agregar</button>
+                                            </div>
+                                        </form>
+                                    </div>
+                                    
+                                </div>
+                                </div>
+                            </div>
+                            <!-- end create-user-form -->
+
+                            
+
                         </div>
                       </nav>
-                </header>
-                <!-- end header -->
-            
+                    <hr>
 
-                <!-- start aside -->
+                    <!-- start tabla -->
+                    <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded contenedor-tabla table-responsive">
 
-                <div class="container mt-4 shadow-lg p-3 mb-5 bg-body rounded contenedor-tabla">
-                    <a class="btn btn-dark" type="button">Crear</a>
+                        <!-- start tabla botones -->
+                        <div class="container tabla-botones">
+                            <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                <button type="button" class="btn btn-success">
+                                    CSV
+                                </button>
+                                <button type="button" class="btn btn-success">
+                                    Excel
+                                </button>
+                                <button type="button" class="btn btn-success">
+                                    PDF
+                                </button>
+                              </div>
+                        </div>
+                        <!-- end tabla botones -->
+
+
+                        <table class="table table-hover ">
+                        <thead>
+                            <tr class="table-active table-secondary">
+                            <th scope="col">Id</th>
+                            <th scope="col">Usuario</th>
+                            <th scope="col">Rol</th>
+                            <th scope="col">Estado</th>
+                            <th scope="col">Fecha Alta</th>
+                            <th scope="col">Fecha Edicion</th>
+                            <th scope="col">Accion</th>
+
+
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <th scope="row">1</th>
+                            <td>Mark</td>
+                            <td>Otto</td>
+                            <td>@mdo</td>
+                            <td>26/07/2022</td>
+                            <td>26/07/2022</td>
+                            <td>
+                                <!-- Delete -->
+                                <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                    <i class="bi bi-trash-fill"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Eliminar Usuario</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            ¿Estas Seguro que deseas eliminar este Usuario?
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-danger">Eliminar</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- end delete -->
+
+                                <!-- start edit -->
+                                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#form-edit">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+
+                                <!-- Modal -->
+                                <div class="modal fade" id="form-edit" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                        <h5 class="modal-title" id="exampleModalLabel">Editar Usuarios</h5>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post">
+                                                <label for="">Ejemplo</label>
+                                                <input type="text" name="" id="" class="form-control">
+                                            </form>
+                                        </div>
+                                        <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                                        <button type="button" class="btn btn-primary">Guardar Cambios</button>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <!-- end edit -->
+
+                            </td>
+                            </tr>
+                            
+                        </tbody>
+                        </table>
+                    </div>
+                    <!-- end tabla -->
                 </div>
-
-                <!-- end aside -->
-
-
-            <!-- end contenido -->
+                
+                <!-- end contenido -->
             </div>
         </div>
     </div>
     <!-- end sidebar -->
-
+    
     <!-- Scripts -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-A3rJD856KowSb7dwlZdYEkO39Gagi7vIsF0jrRAoQmDKKtQBHUuLZ9AsSv4jD4Xa" crossorigin="anonymous"></script>
+    <script src="/js/saludar.js"></script>
+    <script src="/js/form_create.js"></script>
 </body>
 </html>
